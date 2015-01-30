@@ -1,27 +1,49 @@
 require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'bundler/setup'
 require 'rack-flash'
 require_relative './models.rb'
 
-# enable :sessions
-# use Rack::Flash, :sweep
+enable :sessions
+use Rack::Flash, :sweep =>true
 
 set :database, "sqlite3:data.sqlite3"
-# set :sessions, true
+set :sessions, true
 
 get '/' do
 	erb :signin
 end
 
+get '/signin' do
+	erb :signin
+end
+
 post '/signin' do
 	@user = User.where(username: params[:username]).first
-	if @user.password == params[:password]
-		redirect '/my_profile'
+	if @user and @user.password == params[:password]
+		flash[:notice]="Successfully signed in."
+		session[:user_id]=@user.id
+		redirect to('/my_profile')
 	else
-		redirect '/'
+		flash[:notice]="There was a problem logging in"
+		redirect to ('/')
 	end
 end
+
+get '/success' do
+	"You logged in successfully"
+end
+# post '/signin' do
+# 	@user = User.where(username: params[:username]).first
+# 	if @user && @user.password == params[:password]
+# 		session[:user_id] = @user.id
+# 		flash[:notice] = "You've been signed in successfully."
+# 	else
+# 		flash[:alert] = "There was a problem signing you in."
+# 	end
+# 	redirect "/my_profile"
+# end
 
 get '/feed' do
 	erb :feed
@@ -55,59 +77,21 @@ end
 
 def current_user
 	if session[:user_id]
-		@current_user = User.find(session[:user_id])
+	@user=User.find(session[:user_id])
+	else
+	nil
 	end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 get '/recent' do
 	@posts = Post.find(5).reverse
 	erb :recent
+end
+
+get '/signout' do
+	session[:user_id]=nil
+	flash[:notice]="Come back soon!"
+	redirect to ('/')
 end
 
 get '/follow/:id' do

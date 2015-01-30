@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :profiles
+  has_many :posts
   has_many :active_relationships, class_name: "Relationship",
 	                          foreign_key: :follower_id, 
 	                          dependent: :destroy
@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :follower
 end
  
-class Tweet < ActiveRecord::Base
+class Post < ActiveRecord::Base
   belongs_to :user
 end
  

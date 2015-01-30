@@ -19,6 +19,25 @@
 	<h1>
 </nav>
 
+<div class="main-content">
+	<% if current_user %>
+	<h1> Hello <%=current_user.fname if current_user%> | <a href="/signout">Sign out</a></h1>
+	<% else %>
+	<a href="/signin">sign in</a>
+	<%end%>
+</div>
+
+<% if flash[:notice] %>
+    <div class="flash notice">
+      <%=flash[:notice] %>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="flash alert">
+      <%=flash[:alert] %>
+    </div>
+<% end %>
+
 <%=yield%>
 </body>
 </html>
