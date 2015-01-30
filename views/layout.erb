@@ -1,4 +1,25 @@
-worldclique myglobe my account new post signout
+<!DOCTYPE html>
+<html>
+<head>
+	<title>eyeglobe</title>
+	<link rel="stylesheet" type "text/css" href="css/style.css">
+</head>
+<body>
 
+<nav class="top-navigation">
+	<div class="content">
+	<ul class="links">
+		<% links ={"Home"=>"/", "WorldClique"=>"feed", "MyGlobe"=>"my_profile", "MyAccount"=>"my_account", "New Post"=>"add_post","Signout"=>"signin"}%>
+		<% for key, value in links do %>
+			<li class="active"> <a href="<%=value%>"><%=key%></a>
+			</li>
+		<% end %>
+	</ul>
+	<img class="logo" src="images/logo.jpg" alt="Logo Image" height="70px">
+	</div>
+	<h1>
+</nav>
 
-img
+<%=yield%>
+</body>
+</html>

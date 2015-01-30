@@ -1,0 +1,53 @@
+.top-navigation{
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
+    border-bottom:1px solid #DDD;
+    z-index: 9999;
+    display:block;
+    top: 0;
+    left: 0;
+}
+.top-navigation>.content{
+    width: 970px;
+    height:50px;
+    margin: 0 auto;
+    text-decoration: none;
+}
+.top-navigation .content h1{
+	display: inline-block;
+}
+.top-navigation .links {
+    float: right;
+    font-family: 'Roboto', sans-serif;
+    color: #838994;
+    font-size: 18px;
+    margin-top: 40px;
+    -webkit-font-smoothing: antialiased;
+}
+.top-navigation .links li {
+    display: inline-block;
+    margin-left: 25px;
+}
+.top-navigation .links .active {
+    color: #4c5058;
+    font-weight: 500;
+}
+.top-navigation .links li:hover {
+    cursor: pointer;
+    color: #333333;
+}
+a:-webkit-any-link {
+text-decoration: none;
+cursor: auto;
+}
+
+a{
+color:black
+}
+
+.main-content{
+    margin-top:100px;
+}
+
+/*Log In Page*/
