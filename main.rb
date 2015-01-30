@@ -1,12 +1,13 @@
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'bundler/setup'
 require 'rack-flash'
+require_relative './models.rb'
 enable :sessions
 use Rack::Flash, :sweep
 
+set :database, "sqlite3:data.sqlite3"
 set :sessions, true
-
-# session[:user_id] = @user.id
 
 get '/' do
 	erb :signin
@@ -25,6 +26,7 @@ def current_user
 	if session[:user_id]
 		@current_user = User.find(session[:user_id])
 	end
+end
 
 result = Posts.find(:all, :order => "id desc", :limit =>5)
 
