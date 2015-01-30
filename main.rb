@@ -25,4 +25,9 @@ def current_user
 	if session[:user_id]
 		@current_user = User.find(session[:user_id])
 	end
+
+result = Posts.find(:all, :order => "id desc", :limit =>5)
+
+	while ! result.empty?
+		@feeds= result.pop
 end
