@@ -28,8 +28,54 @@ def current_user
 	end
 end
 
-result = Posts.find(:all, :order => "id desc", :limit =>5)
 
-	while ! result.empty?
-		@feeds= result.pop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+get '/recent' do
+	@posts = Post.find(5).reverse
+	erb :recent
 end
+
