@@ -34,16 +34,6 @@ end
 get '/success' do
 	"You logged in successfully"
 end
-# post '/signin' do
-# 	@user = User.where(username: params[:username]).first
-# 	if @user && @user.password == params[:password]
-# 		session[:user_id] = @user.id
-# 		flash[:notice] = "You've been signed in successfully."
-# 	else
-# 		flash[:alert] = "There was a problem signing you in."
-# 	end
-# 	redirect "/my_profile"
-# end
 
 get '/feed' do
 	erb :feed
@@ -65,6 +55,12 @@ get '/signup' do
 	erb :signup
 end
 
+post '/signup' do
+	User.create(params[:user])
+	flash[:notice]="Welcome to Eyeglobe!"
+	redirect to '/my_profile'
+end
+
 get '/add_post' do
 	erb :add_post
 end
@@ -72,7 +68,7 @@ end
 post '/add_post' do
 	Post.create(params[:post])
 	flash[:notice]="New post created."
-	redirect to '/'
+	redirect to '/my_profile'
 end
 
 def current_user

@@ -1,21 +1,27 @@
-fname lname location about username password
-
-<form action="signup" method="Post">
+<form method="POST" action="/posts/new">
 	<p>
 		<label for="fname">First Name</label>
-		<input type="text" name="fname">
+		<input type="text" name="[post]fname">
 	</p>
 	<p>
 		<label for="lname">Last Name</label>
-		<input type="text" name="lname">
+		<input type="text" name="[post]lname">
 	</p>
 	<p>
-		<label for="location">Last Name</label>
-		<input type="text" name="lname">
+		<label for="location">Location</label>
+		<input type="text" name="[post]location">
 	</p>
 	<p>
 		<label for="about">About</label>
-		<input type="password" name="password">
+		<input type="text" name="[post]about">
+	</p>
+	<p>
+		<label for="username">Username</label>
+		<input type="text" name="[post]username">
+	</p>
+	<p>
+		<label for="password">Password</label>
+		<input type="text" name="[post]password">
 	</p>
 	<p><input type="submit"></p>
 </form>
